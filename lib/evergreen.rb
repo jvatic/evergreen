@@ -15,7 +15,7 @@ module Evergreen
   autoload :Template, 'evergreen/template'
 
   class << self
-    attr_accessor :driver, :public_dir, :template_dir, :spec_dir, :root, :mounted_at, :application
+    attr_accessor :driver, :public_dir, :template_dir, :spec_dir, :root, :mounted_at, :application, :assets
 
     def configure
       yield self
@@ -33,5 +33,10 @@ module Evergreen
     end
   end
 end
+
+require 'sprockets'
+Evergreen.assets = Sprockets::Environment.new do |env|
+end
+
 
 Evergreen.use_defaults!

@@ -43,8 +43,8 @@ module Evergreen
       send_file File.expand_path(File.join('resources', path), File.dirname(__FILE__))
     end
 
-    get '/*' do |path|
-      send_file File.join(Evergreen.root, Evergreen.public_dir, path)
+    get '/*' do
+      Evergreen.assets.call(env.clone)
     end
   end
 end
